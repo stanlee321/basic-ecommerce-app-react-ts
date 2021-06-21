@@ -6,6 +6,7 @@ import Grid from '../Grid';
 import Thumb from '../Thumb';
 import Spinner from "../Spinner";
 import SearchBar from '../SearchBar';
+import { useHomeFetch } from "../../hooks/useHomeFetch";
 
 
 const data = [
@@ -28,15 +29,22 @@ const data = [
 ]
 
 const Home = () => {
+
+  const  { state, loading, error, searchTerm, setSearchTerm }  = useHomeFetch();
+
   return (
     <>
+      {!searchTerm && state.results[0]? (
       <HeroImage
         image={"https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-05/81aa90d0-36bd-11eb-a219-73e9ca8fa2ef.jpg"}
         title={"This is a title "}
         text={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."}
-      />
-      <SearchBar/>
-      <Grid header="Popular Movies">
+        />
+        ): null
+      }
+      <SearchBar setSearchTerm={setSearchTerm}/>
+
+      <Grid header={ searchTerm? 'Search Result': "Popular Movies"}>
         {
           data.map( example => (
 
