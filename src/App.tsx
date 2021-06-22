@@ -1,18 +1,25 @@
-import React from 'react';
+import React from "react";
 
-import { GlobalStyle } from './GlobalStyle';
+// Routing
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Header from './components/Header'
-import Home from './components/Home';
+import { GlobalStyle } from "./GlobalStyle";
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <Home/>
-      <GlobalStyle/>
-    </div>
-  );
-}
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import Movie from "./pages/Movie";
+import NotFound from "./pages/NotFound";
+
+const App = () => (
+  <Router>
+    <Header />
+    <Switch>
+      <Route exact path="/" component = {Home}/>    
+      <Route path="/movies/:movieId" component={Movie} />
+      <Route path="/*" component={NotFound}/>
+    </Switch>
+    <GlobalStyle/>
+  </Router>
+);
 
 export default App;

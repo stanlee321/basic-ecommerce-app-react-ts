@@ -1,20 +1,30 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 // Styles
-
 import { Image } from './Thumb.syles'
 
 // Interface
 interface Props {
     image: string,
-    movieId: number,
+    movieId?: number,
     clickable: boolean,
-    children: JSX.Element[]
+    children?: JSX.Element[]
+    alt: string,
 }
 
-const Thumb = ({image, movieId, clickable}: Props) => (
+const Thumb = ({image, movieId, clickable , alt}: Props) => (
     <div>
-        <Image src={image} alt='movie-thumb' ></Image>
+        {
+            clickable? (
+                <Link to={`/movie/${movieId}`}>
+                    <Image src={image} alt={alt} ></Image>
+                </Link>
+            ): (
+                <Image src={image} alt={alt} ></Image>
+            )
+
+        }
     </div>
 )
 

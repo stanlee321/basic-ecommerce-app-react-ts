@@ -1,11 +1,13 @@
 import React from "react";
 
 // Components
-import HeroImage from '../HeroImage';
-import Grid from '../Grid';
-import Thumb from '../Thumb';
-import Spinner from "../Spinner";
-import SearchBar from '../SearchBar';
+import HeroImage from '../../components/HeroImage';
+import Grid from '../../components/Grid';
+import Thumb from '../../components/Thumb';
+import Spinner from "../../components/Spinner";
+import SearchBar from '../../components/SearchBar';
+import Button from "../../components/Button";
+
 import { useHomeFetch } from "../../hooks/useHomeFetch";
 
 
@@ -50,11 +52,12 @@ const Home = () => {
 
             <Thumb 
               key = { example.id}
-              clickable
+              clickable={true}
               image = {
                 "https://firebasestorage.googleapis.com/v0/b/ecommerce-1c157.appspot.com/o/WhatsApp%20Image%202021-05-31%20at%2015.35.33.jpeg?alt=media&token=de4b9fb7-7566-4fb4-b496-d8d323f16793"
               }
               movieId= {example.id}
+              alt = {"thumb-image"}
               >
 
             </Thumb>
@@ -63,9 +66,7 @@ const Home = () => {
         }
       </Grid>
       <Spinner/>
-      <div>
-        <h1>Hello</h1>
-      </div>
+        <Button text='Load More' callback={()=>console.log("CLICK")}/>
     </>
   );
 };
